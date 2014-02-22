@@ -35,6 +35,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/messages', message.list);
+app.get('/messages/:id', message.view);
 app.post('/messages', message.create);
 
 http.createServer(app).listen(app.get('port'), function(){
