@@ -3,7 +3,7 @@ var tokenizer = require('./tokenizer');
 
 exports.list = function(req, res) {
 	res.send(messages);
-}
+};
 
 exports.create = function(req, res) {
 	var tokens = tokenizer.parse(req.body.message);
@@ -12,4 +12,6 @@ exports.create = function(req, res) {
 	messages.push({'message': req.body.message, 'timestamp': new Date(), 'meta': meta});
 	console.log(new Date() + ': ' + req.body.message);
 	res.send(201);
-}
+};
+
+exports.messages = messages;

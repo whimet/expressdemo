@@ -1,11 +1,21 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html ng-app>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
+    <script src="/javascripts/message.js"></script>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+<h1><%= title %></h1>
+
+<p>Welcome to <%= title %></p>
+
+<div ng-controller="MessageCtrl">
+    <ul>
+        <li ng-repeat="message in messages"></li>
+    </ul>
+</div>
+
+</body>
 </html>
