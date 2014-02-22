@@ -26,7 +26,7 @@ exports.listenForMessages = function (messagesListener) {
 };
 
 exports.addMessage = function (message) {
-    firebase.push(message, function (error) {
+    return firebase.push(message, function (error) {
         if (error) {
             console.log(error);
         }
