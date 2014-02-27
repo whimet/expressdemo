@@ -20,8 +20,8 @@ exports.view = function (req, res) {
 
 exports.create = function (req, res) {
     var tokens = tokenizer.parse(req.body.message);
-    var meta = {'timestamp': new Date(), 'users': tokens.users, 'categories': tokens.categories};
+    var meta = {user: req.user, timestamp: new Date(), users: tokens.users, categories: tokens.categories};
     var ref = firebase.addMessage({'message': req.body.message, 'meta': meta});
-    console.log('new message created: ' + ref.name());
+    console.log('new message created: ' + ref.name() + ' by ' + req.user);
     res.status(201).send(req.path + '/' + ref.name());
 };

@@ -6,6 +6,7 @@
 var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
+var auth = require('./app/auth');
 var message = require('./routes/message');
 var http = require('http');
 var path = require('path');
@@ -32,11 +33,13 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+var authenticator = express.basicAuth(auth.authenticate);
+
 app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/messages', message.list);
 app.get('/messages/:id', message.view);
-app.post('/messages', message.create);
+app.post('/messages', authenticator, message.create);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
